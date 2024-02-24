@@ -2,17 +2,21 @@
 #include <limits>
 #include <string>
 
+using namespace std;
 /* const int BLUE = 0;
 const int RED = 1;
 const int GREEN = 2;
 const int YELLOW = 3;
 const int PURPLE = 4;
 const int ORANGE = 5; */
-
+IceCreamFlavor getIceCreamFlavor(); 
+string printIceCreamFlavorName(IceCreamFlavor flavor); 
 // lecture activity create an enum based on your 3 favorite ice cream flavors
 // write a function to get an ice cream flavor (like inputColor)
 // write a function to print the name of the ice cream (like printColorName)
 // in a main create 3 ice cream variables and use the functions you created to input and output the values.
+enum IceCreamFlavor {CHOCOLATE, VANILLA, STRAWBERRY};
+
 
 enum colorType
 {
@@ -33,6 +37,14 @@ std::string printColorName(colorType theColor);
 
 int main()
 {
+    IceCreamFlavor flavor1, flavor2, flavor3;
+    flavor1 = getIceCreamFlavor();
+    flavor2 = getIceCreamFlavor();
+    flavor3 = getIceCreamFlavor();
+    cout << "Ice Cream Flavors:\n";
+    cout << "1. " << printIceCreamFlavorName(flavor1) << endl;
+    cout << "2. " << printIceCreamFlavorName(flavor2) << endl;
+    cout << "3. " << printIceCreamFlavorName(flavor3) << endl;
     colorType color;
     color = inputColor();
     printColor(color);
@@ -159,4 +171,42 @@ void resetStream()
     std::cout << "You entered something that is not a number!" << std::endl;
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+
+IceCreamFlavor getIceCreamFlavor() 
+    {
+    int choice;
+    std::cout << "Choose an ice cream flavor:\n";
+    std::cout << "1. Chocolate\n";
+    std::cout << "2. Vanilla\n";
+    std::cout << "3. Strawberry\n";
+    std::cout << "Enter your choice (1-3): ";
+    std::cin >> choice;
+
+    switch (choice) {
+        case 1:
+            return CHOCOLATE;
+        case 2:
+            return VANILLA;
+        case 3:
+            return STRAWBERRY;
+        default:
+            std::cerr << "Invalid choice. Defaulting to Chocolate.\n";
+            return CHOCOLATE;
+    }
+}
+
+string printIceCreamFlavorName(IceCreamFlavor flavor) 
+    {
+    switch (flavor) {
+        case CHOCOLATE:
+            return "Chocolate";
+        case VANILLA:
+            return "Vanilla";
+        case STRAWBERRY:
+            return "Strawberry";
+        default:
+            return "Unknown Flavor";
+    }
 }
